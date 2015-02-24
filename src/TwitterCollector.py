@@ -271,25 +271,25 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     return True
 
 def main():
-    
-    try:
-        
-        # From mysql_tools.py
-        create_db(local_db)
+    while True: 
+        try:
+            # From mysql_tools.py
+            create_db(local_db)
 
-        create_tweet_table(local_db)
+            create_tweet_table(local_db)
 
-        auth = OAuthHandler(consumer_key, consumer_secret)
-        auth.set_access_token(access_token_key, access_token_secret)
-        twitterStream = Stream(auth, listener())
-        twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
-                                                                                                                                                 
-    except:
-        tb = sys.exc_info()[2]
-        tbinfo = traceback.format_tb(tb)[0]
-        pymsg = "PYTHON ERRORS:\nTraceback info:\n" + tbinfo + "\nError Info:\n" + str(sys.exc_info()[1])
-
-    return
+            auth = OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token_key, access_token_secret)
+            twitterStream = Stream(auth, listener())
+            twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
+                                                                                                                                                     
+        except Exception:
+            tb = sys.exc_info()[2]
+            tbinfo = traceback.format_tb(tb)[0]
+            pymsg = "PYTHON ERRORS:\nTraceback info:\n" + tbinfo + "\nError Info:\n" + str(sys.exc_info()[1])
+            # Try reconnection
+            time.sleep(60)
+            twitterStream = Stream(auth, listener())
 
 if __name__ == '__main__':
     main()
