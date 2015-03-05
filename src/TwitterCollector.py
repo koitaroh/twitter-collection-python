@@ -22,7 +22,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 d = datetime.datetime.today()
 conf = ConfigParser.SafeConfigParser()
-conf.read('config.cfg')
+conf.read('../config.cfg')
 print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 
 # initialize filename_json
