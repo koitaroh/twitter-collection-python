@@ -32,10 +32,10 @@ print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 # f_CSV.write('tweet_id, datetime, user_name, user_id, x, y, raw_tweet\n')
 table_name = "tweet_table_dev_" + d.strftime("%Y%m%d%H%M%S")
 
-consumer_key = conf.get('twitter', 'consumer_key')
-consumer_secret = conf.get('twitter', 'consumer_secret')
-access_token_key = conf.get('twitter', 'access_token_key')
-access_token_secret = conf.get('twitter', 'access_token_secret')
+consumer_key = conf.get('twitter_dev', 'consumer_key')
+consumer_secret = conf.get('twitter_dev', 'consumer_secret')
+access_token_key = conf.get('twitter_dev', 'access_token_key')
+access_token_secret = conf.get('twitter_dev', 'access_token_secret')
 
 local_db = {
             "host": conf.get('local_db', 'host'),
@@ -43,6 +43,7 @@ local_db = {
             "passwd": conf.get('local_db', 'passwd'),
             "db_name": conf.get('local_db', 'db_name'),
             }   
+
 
 
 # Function to convert "created at" in GMT to JST
@@ -93,7 +94,7 @@ class listener(StreamListener):
                     verbs = ",".join(words_dict['verbs'])
                     adjs =  ",".join(words_dict['adjs'])
                     
-                    # print(datetimeJST +': '+ raw_tweet + '\r')
+                    print(datetimeJST +': '+ raw_tweet + '\r')
                     # print text segments.
                     # print("All:", words)
                     # print("Nouns:", nouns)
