@@ -2,11 +2,11 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-01-27
+# Last Update: 2015-03-11
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
-# Parameters: 
+
 from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler
@@ -53,6 +53,12 @@ def YmdHMS(created_at):
     time_local = time.localtime(unix_time)
     return str(time.strftime("%Y-%m-%d %H:%M:%S", time_local))
 
+def HMS(created_at):
+    time_utc = time.strptime(created_at, '%a %b %d %H:%M:%S +0000 %Y')
+    unix_time = calendar.timegm(time_utc)
+    time_local = time.localtime(unix_time)
+    return str(time.strftime("%H:%M:%S", time_local))
+
 class listener(StreamListener):
     def on_status(self, status):
         print(status.text)
@@ -76,8 +82,8 @@ class listener(StreamListener):
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
                 if "I'm at" not in raw_tweet:
-                    timeJST = YmdHMS(tweet['created_at']) # convert time to local time.
-                    # print(timeJST +': '+ raw_tweet)
+                    datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
+                    timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
 
 
@@ -88,15 +94,16 @@ class listener(StreamListener):
                     verbs = ",".join(words_dict['verbs'])
                     adjs =  ",".join(words_dict['adjs'])
                     
-                    print(timeJST +': '+ raw_tweet + '\r')
+                    print(datetimeJST +': '+ raw_tweet + '\r')
                     # print text segments.
-                    # print "All:", words
-                    # print "Nouns:", nouns
-                    print("Verbs:", verbs)
-                    # print "Adjs:", adjs
+                    # print("All:", words)
+                    # print("Nouns:", nouns)
+                    # print("Verbs:", verbs)
+                    # print("Adjs:", adjs)
                     row = [
 
                         tweet['id'],
+                        datetimeJST,
                         timeJST,
                         tweet['user']['screen_name'],
                         tweet['user']['id_str'],
@@ -111,7 +118,8 @@ class listener(StreamListener):
                         ]
                     tweet_table_dict = {
                         "tweet_id": tweet['id'],
-                        "datetime": timeJST,
+                        "datetime": datetimeJST,
+                        "time": timeJST,
                         "user_name": tweet['user']['screen_name'],
                         "user_id": tweet['user']['id_str'],
                         "x": tweet['geo']['coordinates'][1],
@@ -176,7 +184,9 @@ def mecab_parse(text):
             # verbs.append(word)
             verbs.append(lemma)
         elif pos == "形容詞":
-            adjs.append(word)
+            lemma = node.feature.split(",")[6]
+            # adjs.append(word)
+            adjs.append(lemma)
         words.append(word)
         node = node.next
     parsed_words_dict = {
@@ -230,7 +240,8 @@ def create_tweet_table(db_info):
         %s(
             id BIGINT PRIMARY KEY AUTO_INCREMENT,                                                                                                                 
             tweet_id BIGINT,                                                                                                                                      
-            datetime DATETIME,                                                                                                                                    
+            datetime DATETIME,
+            time TIME,                                                                                                                                    
             user_name VARCHAR(50),                                                                                                                                       
             user_id BIGINT,                                                                                                                          
             x DECIMAL(10,6),
@@ -252,13 +263,14 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'                                                                                    
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'                                                                                    
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
         table_name,
         tweet_table_dict["tweet_id"],
         tweet_table_dict["datetime"],
+        tweet_table_dict["time"],
         tweet_table_dict["user_name"],
         tweet_table_dict["user_id"],
         tweet_table_dict["x"],
