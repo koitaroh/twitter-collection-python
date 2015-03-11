@@ -30,7 +30,7 @@ print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 # filename_csv = "TweetsCSV_"+d.strftime("%Y%m%d%H%M%S")+".txt"
 # f_CSV = codecs.open(filename_csv,"a","utf-8")
 # f_CSV.write('tweet_id, datetime, user_name, user_id, x, y, raw_tweet\n')
-table_name = "tweet_table_" + d.strftime("%Y%m%d%H%M%S")
+table_name = "tweet_table_dev_" + d.strftime("%Y%m%d%H%M%S")
 
 consumer_key = conf.get('twitter', 'consumer_key')
 consumer_secret = conf.get('twitter', 'consumer_secret')
@@ -92,7 +92,7 @@ class listener(StreamListener):
                     # print text segments.
                     # print "All:", words
                     # print "Nouns:", nouns
-                    # print "Verbs:", verbs
+                    print("Verbs:", verbs)
                     # print "Adjs:", adjs
                     row = [
 
@@ -172,7 +172,9 @@ def mecab_parse(text):
         if pos == "名詞":
             nouns.append(word)
         elif pos == "動詞":
-            verbs.append(word)
+            lemma = node.feature.split(",")[6]
+            # verbs.append(word)
+            verbs.append(lemma)
         elif pos == "形容詞":
             adjs.append(word)
         words.append(word)
