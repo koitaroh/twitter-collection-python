@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-03-11
+# Last Update: 2015-03-17
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
@@ -24,6 +24,7 @@ d = datetime.datetime.today()
 conf = ConfigParser.SafeConfigParser()
 conf.read('../config.cfg')
 print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
+i = 0
 
 # initialize filename_json
 # filename_json = "TweetsJSON_"+d.strftime("%Y%m%d%H%M%S")+".txt"
@@ -45,7 +46,6 @@ local_db = {
             }   
 
 
-
 # Function to convert "created at" in GMT to JST
 def YmdHMS(created_at):
     time_utc = time.strptime(created_at, '%a %b %d %H:%M:%S +0000 %Y')
@@ -64,6 +64,7 @@ class listener(StreamListener):
         print(status.text)
 
     def on_data(self, data):
+        global i
         try:
             tweet = json.loads(data + "\n","utf-8")
 
@@ -94,7 +95,9 @@ class listener(StreamListener):
                     verbs = ",".join(words_dict['verbs'])
                     adjs =  ",".join(words_dict['adjs'])
                     
-                    print(datetimeJST +': '+ raw_tweet + '\r')
+                    print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
+                    i = i + 1
+
                     # print text segments.
                     # print("All:", words)
                     # print("Nouns:", nouns)
@@ -132,6 +135,7 @@ class listener(StreamListener):
                         }
 
                     insert_into_tweet_table(local_db, tweet_table_dict)
+                    
 
                 # writer.writerow(row)
         # ignore type error
@@ -139,16 +143,15 @@ class listener(StreamListener):
             pass
         except BaseException, e:
             print('failed ondata,',str(e))
-            time.sleep(5)
-
+            # time.sleep(5)
 
     def on_error(self, status_code):
-        print >> sys.stderr, 'Encountered error with status code:', status_code
-        return True # Don't kill the stream
-
+        print('Got an error with status code: ' + str(status_code))
+        return True # To continue listening
+ 
     def on_timeout(self):
-        print >> sys.stderr, 'Timeout...'
-        return True # Don't kill the stream
+        print('Timeout...')
+        return True # To continue listening
 
 def filter(text):
     # "RT @user:"を削除

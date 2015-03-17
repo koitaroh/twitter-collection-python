@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-03-11
+# Last Update: 2015-03-17
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
@@ -24,13 +24,14 @@ d = datetime.datetime.today()
 conf = ConfigParser.SafeConfigParser()
 conf.read('../config.cfg')
 print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
+i = 0
 
 # initialize filename_json
 # filename_json = "TweetsJSON_"+d.strftime("%Y%m%d%H%M%S")+".txt"
 # filename_csv = "TweetsCSV_"+d.strftime("%Y%m%d%H%M%S")+".txt"
 # f_CSV = codecs.open(filename_csv,"a","utf-8")
 # f_CSV.write('tweet_id, datetime, user_name, user_id, x, y, raw_tweet\n')
-table_name = "tweet_table_dev_" + d.strftime("%Y%m%d%H%M%S")
+table_name = "tweet_table_" + d.strftime("%Y%m%d%H%M%S")
 
 consumer_key = conf.get('twitter', 'consumer_key')
 consumer_secret = conf.get('twitter', 'consumer_secret')
@@ -63,6 +64,7 @@ class listener(StreamListener):
         print(status.text)
 
     def on_data(self, data):
+        global i
         try:
             tweet = json.loads(data + "\n","utf-8")
 
@@ -93,6 +95,9 @@ class listener(StreamListener):
                     verbs = ",".join(words_dict['verbs'])
                     adjs =  ",".join(words_dict['adjs'])
                     
+                    print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
+                    i = i + 1
+
                     # print(datetimeJST +': '+ raw_tweet + '\r')
                     # print text segments.
                     # print("All:", words)
@@ -131,7 +136,7 @@ class listener(StreamListener):
                         }
 
                     insert_into_tweet_table(local_db, tweet_table_dict)
-
+                   
                 # writer.writerow(row)
         # ignore type error
         except ValueError:
@@ -142,12 +147,12 @@ class listener(StreamListener):
 
 
     def on_error(self, status_code):
-        print >> sys.stderr, 'Encountered error with status code:', status_code
-        return True # Don't kill the stream
-
+        print('Got an error with status code: ' + str(status_code))
+        return True # To continue listening
+ 
     def on_timeout(self):
-        print >> sys.stderr, 'Timeout...'
-        return True # Don't kill the stream
+        print('Timeout...')
+        return True # To continue listening
 
 def filter(text):
     # "RT @user:"を削除
