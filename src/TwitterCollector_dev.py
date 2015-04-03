@@ -12,6 +12,7 @@ from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import time, datetime, json, sys, codecs, csv, calendar, MeCab, ConfigParser, traceback, os, MySQLdb
+from gmt_to_jst import GMTToJST
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
@@ -83,6 +84,7 @@ class listener(StreamListener):
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
                 if "I'm at" not in raw_tweet:
+                    # with GMTToJST as gmt_to_jst:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
