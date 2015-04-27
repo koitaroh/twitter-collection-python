@@ -6,12 +6,13 @@
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
+# Updated for Python 3
 
 from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-import time, datetime, json, sys, codecs, csv, calendar, MeCab, ConfigParser, traceback, os, MySQLdb
+import time, datetime, json, sys, codecs, csv, calendar, MeCab, configparser, traceback, os, MySQLdb
 from gmt_to_jst import GMTToJST
 
 # Constants                                                                                                                                                     
@@ -143,7 +144,7 @@ class listener(StreamListener):
         # ignore type error
         except ValueError:
             pass
-        except BaseException, e:
+        except BaseException as e:
             print('failed ondata,',str(e))
             # time.sleep(5)
 
