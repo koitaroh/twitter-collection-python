@@ -12,7 +12,8 @@ from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-import time, datetime, json, sys, codecs, csv, calendar, MeCab, configparser, traceback, os, MySQLdb
+import time, datetime, json, sys, codecs, csv, calendar, MeCab, configparser, traceback, os, PyMySQL
+# import MySQLdb
 from gmt_to_jst import GMTToJST
 
 # Constants                                                                                                                                                     

@@ -1,5 +1,3 @@
-
-
 # Function to convert "created at" in GMT to JST
 
 class GMTToJST(object):
