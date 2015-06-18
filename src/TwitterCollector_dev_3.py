@@ -8,6 +8,10 @@
 # Objective: Collect tweet and store into database
 # Updated for Python 3
 
+# tasks:
+# Not time field
+# Insert into a single table?
+
 from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler

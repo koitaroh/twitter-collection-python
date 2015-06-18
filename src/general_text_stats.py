@@ -24,7 +24,8 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import Normalizer
 
-filename = '../data/tweet_table_20150317140245.csv'
+# filename = '../data/tweet_table_20150317140245.csv'
+filename = '/Users/koitaroh/Documents/GitHub/GeoTweetCollector/data/tweet_df_20150318_20150324.csv'
 
 corpus = []
 
@@ -81,8 +82,8 @@ def main(filename):
     print(tweets[3])
     print(X[2, vocab == 'なう'])
     print(X[3, vocab == 'なう'])
-    print(X[1, vocab == '松山'])
     print(X[2, vocab == '松山'])
+    print(X[3, vocab == '松山'])
 
 #     # feature extraction
 #     vectorizer = TfidfVectorizer(analyzer=analyzer, max_df=MAX_DF)
