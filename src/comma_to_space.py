@@ -18,3 +18,5 @@ if __name__ == '__main__':
     inname = '/Users/koitaroh/Documents/GitHub/GeoTweetCollector/data/tweet_table_20150317142835_5.csv'
     outname = '/Users/koitaroh/Documents/GitHub/GeoTweetCollector/data/tweet_table_20150317142835_space.csv'
     replace(inname, outname)
+
+
