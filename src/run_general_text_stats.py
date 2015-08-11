@@ -1,7 +1,7 @@
 #!/usr/bin/env python                                                                                                                                             
 # -*- coding:utf-8 -*- 
 
-# general_text_stats.py
+# run_general_text_stats.py
 # Last Update: 2015-05-14
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
