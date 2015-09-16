@@ -133,7 +133,7 @@ class listener(StreamListener):
                         "words": words,
                         "nouns": nouns,
                         "verbs": verbs,
-                        "adjs": adjs
+                        "adjs": adjs,
                         "lang": tweet['lang']
                         }
 
