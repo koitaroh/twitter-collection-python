@@ -12,7 +12,7 @@ from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import time, datetime, json, sys, codecs, csv, calendar, MeCab, ConfigParser, traceback, os, MySQLdb
-from gmt_to_jst import GMTToJST
+from convert_gmt_to_jst import GMTToJST
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
@@ -77,15 +77,16 @@ class listener(StreamListener):
 
             # Write to CSV
             # Collect tweets only in Japanese and with geo-tag
-            if tweet['lang'] == 'ja' and tweet['geo']:
+            if tweet['geo']:
                 
                 raw_tweet = str(tweet['text']) # conver to from Unicode
                 # writer = csv.writer(f_CSV)
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
+                raw_tweet = raw_tweet.replace('\'',' ') # Escape single quote
+                raw_tweet = raw_tweet.replace("'",' ') # Escape single quote
                 if "I'm at" not in raw_tweet:
-                    with GMTToJST as gmt_to_jst:
-                        datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
+                    datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
 
@@ -118,7 +119,8 @@ class listener(StreamListener):
                         words,
                         nouns,
                         verbs,
-                        adjs
+                        adjs,
+                        tweet['lang']
 
                         ]
                     tweet_table_dict = {
@@ -133,7 +135,8 @@ class listener(StreamListener):
                         "words": words,
                         "nouns": nouns,
                         "verbs": verbs,
-                        "adjs": adjs
+                        "adjs": adjs,
+                        "lang": tweet['lang']
                         }
 
                     insert_into_tweet_table(local_db, tweet_table_dict)
@@ -255,7 +258,8 @@ def create_tweet_table(db_info):
             words TEXT,                                                                                                                                           
             nouns TEXT,                                                                                                                                           
             verbs TEXT,                                                                                                                                           
-            adjs TEXT                                                                                                                                             
+            adjs TEXT,
+            lang VARCHAR(20)
         )
         CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci                                                                                                                                               
     ;                                                                                                                                                             
@@ -268,7 +272,7 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'                                                                                    
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
@@ -284,7 +288,8 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
         tweet_table_dict["words"],
         tweet_table_dict["nouns"],
         tweet_table_dict["verbs"],
-        tweet_table_dict["adjs"]
+        tweet_table_dict["adjs"],
+        tweet_table_dict["lang"]
         )
     execute_sql(sql, db_info, is_commit = True)
     return True
@@ -300,7 +305,11 @@ def main():
             auth = OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token_key, access_token_secret)
             twitterStream = Stream(auth, listener())
-            twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
+
+            # # For Whole Japan
+            # twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
+            # # For Koh Pha Ngan
+            twitterStream.filter(locations=[99.906928,9.659193,100.100665,9.812530])
                                                                                                                                                      
         except Exception:
             tb = sys.exc_info()[2]

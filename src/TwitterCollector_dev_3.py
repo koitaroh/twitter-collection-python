@@ -2,33 +2,30 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-03-17
+# Last Update: 2015-09-11
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
 # Updated for Python 3
 
 # tasks:
-# Not time field
 # Insert into a single table?
+# Include other languages.
 
-from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-import time, datetime, json, sys, codecs, csv, calendar, MeCab, configparser, traceback, os, PyMySQL
-# import MySQLdb
-from gmt_to_jst import GMTToJST
+import time, datetime, json, sys, codecs, csv, calendar, MeCab, configparser, traceback, os, pymysql, importlib
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
 PARSE_TEXT_ENCODING = 'utf-8'
 
 # Reload sys module in order to set default encoding as utf-8.
-reload(sys)
-sys.setdefaultencoding('utf-8')
+importlib.reload(sys)
+# sys.setdefaultencoding('utf-8')
 d = datetime.datetime.today()
-conf = ConfigParser.SafeConfigParser()
+conf = configparser.SafeConfigParser()
 conf.read('../config.cfg')
 print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 i = 0
@@ -74,7 +71,7 @@ class listener(StreamListener):
         global i
         try:
             tweet = json.loads(data + "\n","utf-8")
-
+            # print(tweet['text'])
             # Write as JSON
             # f = codecs.open(filename_json,"a","utf-8")
             # json.dump(tweet,f,indent=4,ensure_ascii=False)
@@ -83,19 +80,18 @@ class listener(StreamListener):
 
             # Write to CSV
             # Collect tweets only in Japanese and with geo-tag
-            if tweet['lang'] == 'ja' and tweet['geo']:
-                
+            # if tweet['lang'] == 'ja' and tweet['geo']:
+            if tweet['geo']:
                 raw_tweet = str(tweet['text']) # conver to from Unicode
+                print(raw_tweet)
                 # writer = csv.writer(f_CSV)
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
                 if "I'm at" not in raw_tweet:
-                    with GMTToJST as gmt_to_jst:
-                        datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
+                    datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
-
-
+                    print(raw_tweet)
                     # run mecab engine to create dictonary
                     words_dict = mecab_parse(raw_tweet)
                     words = ",".join(words_dict['all'])
@@ -210,18 +206,18 @@ def mecab_parse(text):
 
 # From mysql_tools
 def create_db(db_info): 
-    connector = MySQLdb.connect(
+    connector = pymysql.connect(
         host = db_info["host"],
         user = db_info["user"],
         passwd = db_info["passwd"],
         charset = "utf8mb4"
         )
     cursor = connector.cursor()
-    sql = u"""
-    CREATE DATABASE IF NOT EXISTS                                                                                                                                 
-        %s                                                                                                                                                        
-    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci                                                                                                                                                    
-    ;                                                                                                                                                             
+    sql = """
+    CREATE DATABASE IF NOT EXISTS
+        %s
+    CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+    ;
     """ %(db_info["db_name"])
     cursor.execute(sql)
     connector.commit()
@@ -230,7 +226,7 @@ def create_db(db_info):
     return True
 
 def execute_sql(sql, db_info, is_commit = False):
-    connector = MySQLdb.connect(
+    connector = pymysql.connect(
         host = db_info["host"],
         user = db_info["user"],
         passwd = db_info["passwd"],
@@ -246,13 +242,13 @@ def execute_sql(sql, db_info, is_commit = False):
     return True
 
 def create_tweet_table(db_info):
-    sql = """                                                                                                                                                     
+    sql = """
     CREATE TABLE IF NOT EXISTS                                                                                                                                    
         %s(
             id BIGINT PRIMARY KEY AUTO_INCREMENT,                                                                                                                 
             tweet_id BIGINT,                                                                                                                                      
             datetime DATETIME,
-            time TIME,                                                                                                                                    
+            time TIME,
             user_name VARCHAR(50),                                                                                                                                       
             user_id BIGINT,                                                                                                                          
             x DECIMAL(10,6),
@@ -261,7 +257,8 @@ def create_tweet_table(db_info):
             words TEXT,                                                                                                                                           
             nouns TEXT,                                                                                                                                           
             verbs TEXT,                                                                                                                                           
-            adjs TEXT                                                                                                                                             
+            adjs TEXT,
+            lang VARCHAR(5)
         )
         CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci                                                                                                                                               
     ;                                                                                                                                                             
@@ -306,7 +303,12 @@ def main():
             auth = OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token_key, access_token_secret)
             twitterStream = Stream(auth, listener())
+
+            # For whole japan
             twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
+
+            # # For Koh Pha Ngan
+            # twitterStream.filter(locations=[99.906928,9.659193,100.100665,9.812530])
                                                                                                                                                      
         except Exception:
             tb = sys.exc_info()[2]

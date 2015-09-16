@@ -76,7 +76,7 @@ class listener(StreamListener):
 
             # Write to CSV
             # Collect tweets only in Japanese and with geo-tag
-            if tweet['lang'] == 'ja' and tweet['geo']:
+            if tweet['geo']:
                 
                 raw_tweet = str(tweet['text']) # conver to from Unicode
                 # writer = csv.writer(f_CSV)
@@ -117,7 +117,8 @@ class listener(StreamListener):
                         words,
                         nouns,
                         verbs,
-                        adjs
+                        adjs,
+                        lang
 
                         ]
                     tweet_table_dict = {
@@ -133,6 +134,7 @@ class listener(StreamListener):
                         "nouns": nouns,
                         "verbs": verbs,
                         "adjs": adjs
+                        "lang": tweet['lang']
                         }
 
                     insert_into_tweet_table(local_db, tweet_table_dict)
@@ -254,7 +256,8 @@ def create_tweet_table(db_info):
             words TEXT,                                                                                                                                           
             nouns TEXT,                                                                                                                                           
             verbs TEXT,                                                                                                                                           
-            adjs TEXT                                                                                                                                             
+            adjs TEXT,
+            lang VARCHAR(10)
         )
         CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci                                                                                                                                               
     ;                                                                                                                                                             
@@ -267,7 +270,7 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'                                                                                    
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
@@ -283,7 +286,8 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
         tweet_table_dict["words"],
         tweet_table_dict["nouns"],
         tweet_table_dict["verbs"],
-        tweet_table_dict["adjs"]
+        tweet_table_dict["adjs"],
+        tweet_table_dict["lang"]
         )
     execute_sql(sql, db_info, is_commit = True)
     return True
