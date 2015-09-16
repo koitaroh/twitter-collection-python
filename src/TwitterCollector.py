@@ -82,6 +82,8 @@ class listener(StreamListener):
                 # writer = csv.writer(f_CSV)
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
+                raw_tweet = raw_tweet.replace('\'',' ') # Escape single quote
+                raw_tweet = raw_tweet.replace("'",' ') # Escape single quote
                 if "I'm at" not in raw_tweet:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     timeJST = HMS(tweet['created_at']) # convert time to local time.
@@ -118,7 +120,7 @@ class listener(StreamListener):
                         nouns,
                         verbs,
                         adjs,
-                        lang
+                        tweet['lang']
 
                         ]
                     tweet_table_dict = {
