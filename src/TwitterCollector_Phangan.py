@@ -36,7 +36,7 @@ def initialize(): # twitter接続情報や、mongoDBへの接続処理等initial
 #   connect = Connection('localhost', 27017)     # Connection classは廃止されたのでMongoClientに変更 
     connect = MongoClient('localhost', 27017)
     db = connect.starbucks
-    tweetdata = db.tweetdata
+    tweetdata = db.tweetphangan11
     meta = db.metadata
     posi_nega_dict = db.posi_nega_dict
  
@@ -48,6 +48,7 @@ def getTweetData(search_word, max_id, since_id):
     global twitter
     url = 'https://api.twitter.com/1.1/search/tweets.json'
     params = {'q': search_word,
+                # 'geocode': '9.747821,100.027039,10mi',
               'count':'100',
     }
     # max_idの指定があれば設定する
@@ -90,7 +91,7 @@ while(True):
     try:
         count = count + 1
         sys.stdout.write("%d, "% count)
-        res = getTweetData('#NepalEarthquake' ,max_id=mid, since_id=sid)
+        res = getTweetData(('apple') ,max_id=mid, since_id=sid)
         if res['result']==False:
             # 失敗したら終了する
             print "status_code", res['status_code']

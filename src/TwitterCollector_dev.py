@@ -2,9 +2,10 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-03-17
+# Last Update: 2015-9-25
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
+# Python 2.7
 # Objective: Collect tweet and store into database
 
 from __future__ import print_function

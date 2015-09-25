@@ -2,15 +2,11 @@
 # -*- coding:utf-8 -*- 
 
 # InfluentialTweetsForEvc.py
-# Last Update: 2015-09-11
+# Last Update: 2015-09-25
 # Author: Satoshi Miyazawa
 # koitaroh@gmail.com
 # Objective: Collect tweet and store into database
-# Updated for Python 3
-
-# tasks:
-# Insert into a single table?
-# Include other languages.
+# Python 3.5
 
 from tweepy import Stream
 from tweepy import OAuthHandler
