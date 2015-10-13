@@ -1,7 +1,7 @@
 # GeoTweetCollector #
 =========
 
-Collect geotaged tweets using Twitter Streaming API.
+Collect geotagged tweets using Twitter Streaming API.
 
 ### src ###
 
