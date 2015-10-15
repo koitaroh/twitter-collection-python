@@ -12,7 +12,7 @@ from __future__ import print_function
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
-import time, datetime, json, sys, codecs, csv, calendar, MeCab, ConfigParser, traceback, os, MySQLdb
+import time, datetime, json, sys, calendar, MeCab, ConfigParser, traceback, MySQLdb
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
@@ -80,6 +80,7 @@ class listener(StreamListener):
             if tweet['geo']:
                 
                 raw_tweet = str(tweet['text']) # conver to from Unicode
+                print(raw_tweet)
                 # writer = csv.writer(f_CSV)
                 raw_tweet = raw_tweet.replace('\n','') # Get rid of return
                 raw_tweet = raw_tweet.replace('\r','') # Get rid of return
@@ -92,11 +93,11 @@ class listener(StreamListener):
 
 
                     # run mecab engine to create dictonary
-                    words_dict = mecab_parse(raw_tweet)
-                    words = ",".join(words_dict['all'])
-                    nouns = ",".join(words_dict['nouns'])
-                    verbs = ",".join(words_dict['verbs'])
-                    adjs =  ",".join(words_dict['adjs'])
+                    # words_dict = mecab_parse(raw_tweet)
+                    # words = ",".join(words_dict['all'])
+                    # nouns = ",".join(words_dict['nouns'])
+                    # verbs = ",".join(words_dict['verbs'])
+                    # adjs =  ",".join(words_dict['adjs'])
                     
                     print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
                     i = i + 1
