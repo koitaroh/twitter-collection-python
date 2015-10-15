@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aaf2d497-448f-446d-b84b-56904d50522c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/GeoTweetCollector.iml" afterPath="$PROJECT_DIR$/.idea/GeoTweetCollector.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -81,8 +80,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.026548672">
-              <caret line="1" column="135" selection-start-line="1" selection-start-column="135" selection-end-line="1" selection-end-column="135" />
+            <state vertical-scroll-proportion="0.15929204">
+              <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -859,7 +858,7 @@
       <workItem from="1443171058460" duration="1306000" />
       <workItem from="1443404390370" duration="27000" />
       <workItem from="1444893162219" duration="169000" />
-      <workItem from="1444893432460" duration="805000" />
+      <workItem from="1444893432460" duration="999000" />
     </task>
     <task id="LOCAL-00001" summary="Created combine_spatial_topic_table">
       <created>1439277602253</created>
@@ -891,11 +890,17 @@
       <option name="project" value="LOCAL" />
       <updated>1444894094697</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add Travis CI badge to readme">
+      <created>1444894367772</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1444894367777</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74120000" />
+    <option name="totallyTimeSpent" value="74314000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
@@ -941,7 +946,8 @@
     <MESSAGE value="Created combine_spatial_topic_table" />
     <MESSAGE value="Added language column, Added Phangan application." />
     <MESSAGE value="Clean up test script" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up test script" />
+    <MESSAGE value="Add Travis CI badge to readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Travis CI badge to readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1323,8 +1329,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.026548672">
-          <caret line="1" column="135" selection-start-line="1" selection-start-column="135" selection-end-line="1" selection-end-column="135" />
+        <state vertical-scroll-proportion="0.15929204">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
           <folding />
         </state>
       </provider>
