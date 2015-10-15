@@ -16,7 +16,11 @@ Collect geotagged tweets using Twitter Streaming API.
 In streaming.py:
 
 line 161 to
+
 `self._buffer += self._stream.read(read_len).decode('UTF-8', 'ignore')`
+
 and line 171 to
+
 `self._buffer += self._stream.read(self._chunk_size).decode('UTF-8', 'ignore')`
+
 and then reinstalled via python3 setup.py install on my local copy of tweepy.
