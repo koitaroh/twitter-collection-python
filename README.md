@@ -9,8 +9,7 @@ Collect geotagged tweets using Twitter Streaming API.
 | file name     | Description                    |
 | ------------- | ------------------------------ |
 | GeoTweetCollector.py | collect geotagged tweets |
-| GeoTweetCollector_dev.py | In development |
-| GeoTweetCollector_dev_3.py | In development for Python 3 compatibility |
+| GeoTweetCollector_3.py | In development for Python 3 compatibility |
 
 ### important note:
 In streaming.py:
