@@ -9,8 +9,7 @@
 
 from tweepy import Stream
 
-import time, datetime, json, sys, calendar, MeCab, configparser, traceback, pymysql, importlib, tweepy
-import pymysql.cursors
+import time, datetime, json, sys, calendar, configparser, traceback, pymysql, importlib, tweepy
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
@@ -63,30 +62,15 @@ class listener(tweepy.StreamListener):
         try:
             tweet = json.loads(data + "\n","utf-8")
             if tweet['geo']:
-                raw_tweet = str(tweet['text']) # conver to from Unicode
-                # writer = csv.writer(f_CSV)
-                raw_tweet = raw_tweet.replace('\n','') # Get rid of return
-                raw_tweet = raw_tweet.replace('\r','') # Get rid of return
+                raw_tweet = tweet['text'] # convert from Unicode
+
                 if "I'm at" not in raw_tweet:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     timeJST = HMS(tweet['created_at']) # convert time to local time.
-                    # raw_tweet = filter(raw_tweet)
-                    print(raw_tweet)
-                    # run mecab engine to create dictonary
-                    words_dict = mecab_parse(raw_tweet)
-                    words = ",".join(words_dict['all'])
-                    nouns = ",".join(words_dict['nouns'])
-                    verbs = ",".join(words_dict['verbs'])
-                    adjs =  ",".join(words_dict['adjs'])
-                    
+                    raw_tweet = filter(raw_tweet)
                     print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
                     i = i + 1
 
-                    # print text segments.
-                    # print("All:", words)
-                    # print("Nouns:", nouns)
-                    # print("Verbs:", verbs)
-                    # print("Adjs:", adjs)
                     row = [
 
                         tweet['id'],
@@ -97,10 +81,7 @@ class listener(tweepy.StreamListener):
                         tweet['geo']['coordinates'][1],
                         tweet['geo']['coordinates'][0],
                         raw_tweet,
-                        words,
-                        nouns,
-                        verbs,
-                        adjs
+                        tweet['lang']
 
                         ]
                     tweet_table_dict = {
@@ -112,10 +93,7 @@ class listener(tweepy.StreamListener):
                         "x": tweet['geo']['coordinates'][1],
                         "y": tweet['geo']['coordinates'][0],
                         "raw_tweet": raw_tweet,
-                        "words": words,
-                        "nouns": nouns,
-                        "verbs": verbs,
-                        "adjs": adjs
+                        "lang": tweet['lang']
                         }
 
                     insert_into_tweet_table(local_db, tweet_table_dict)
@@ -156,40 +134,38 @@ def filter(text):
     # "URL"を削除
     if "http" in text:
         text = text.split("http", 1)[0]
+    text = text.replace('\n','') # Get rid of return
+    text = text.replace('\r','') # Get rid of return
+    text = text.rstrip()
     return text
 
-def mecab_parse(text):
-    tagger = MeCab.Tagger(MECAB_MODE)
-    node = tagger.parseToNode(text)
-    words = []
-    nouns = []
-    verbs = []
-    adjs = []
-    while node:
-        pos = node.feature.split(",")[0]
-        # unicode 型に戻す
-        word = node.surface.decode("utf-8")
-        if pos == "名詞":
-            nouns.append(word)
-        elif pos == "動詞":
-            lemma = node.feature.split(",")[6]
-            # verbs.append(word)
-            verbs.append(lemma)
-        elif pos == "形容詞":
-            lemma = node.feature.split(",")[6]
-            # adjs.append(word)
-            adjs.append(lemma)
-        words.append(word)
-        node = node.next
-    parsed_words_dict = {
-        "all": words[1:-1], # 最初と最後には空文字列が入るので除去                                                                                                
-        "nouns": nouns,
-        "verbs": verbs,
-        "adjs": adjs
-        }
-    return parsed_words_dict
 
-# From mysql_tools
+def create_db_3(db_info):
+    connection = pymysql.connect(host = db_info["host"],
+                                 user = db_info["user"],
+                                 passwd = db_info["passwd"],
+                                 charset = "utf8mb4",
+                                 cursorclass=pymysql.cursors.DictCursor)
+
+    try:
+        with connection.cursor() as cursor:
+            # Create a new record
+            sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
+            cursor.execute(sql, ('webmaster@python.org', 'very-secret'))
+
+        # connection is not autocommit by default. So you must commit to save
+        # your changes.
+        connection.commit()
+
+        with connection.cursor() as cursor:
+            # Read a single record
+            sql = "SELECT `id`, `password` FROM `users` WHERE `email`=%s"
+            cursor.execute(sql, ('webmaster@python.org',))
+            result = cursor.fetchone()
+            print(result)
+    finally:
+        connection.close()
+
 def create_db(db_info): 
     connector = pymysql.connect(
         host = db_info["host"],
@@ -211,42 +187,38 @@ def create_db(db_info):
     return True
 
 def execute_sql(sql, db_info, is_commit = False):
-    connector = pymysql.connect(
-        host = db_info["host"],
-        user = db_info["user"],
-        passwd = db_info["passwd"],
-        db = db_info["db_name"],
-        charset = "utf8mb4"
-        )
-    cursor = connector.cursor()
-    cursor.execute(sql)
-    if is_commit:
-        connector.commit()
-    cursor.close()
-    connector.close()
-    return True
+    connection = pymysql.connect(host = db_info["host"],
+                                 user = db_info["user"],
+                                 passwd = db_info["passwd"],
+                                 db = db_info["db_name"],
+                                 charset = "utf8mb4",
+                                 cursorclass=pymysql.cursors.DictCursor)
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+        if is_commit:
+            connection.commit()
+        cursor.close()
+    finally:
+        connection.close()
 
 def create_tweet_table(db_info):
     sql = """
-    CREATE TABLE IF NOT EXISTS                                                                                                                                    
+    CREATE TABLE IF NOT EXISTS
         %s(
-            id BIGINT PRIMARY KEY AUTO_INCREMENT,                                                                                                                 
-            tweet_id BIGINT,                                                                                                                                      
+            id BIGINT PRIMARY KEY AUTO_INCREMENT,
+            tweet_id BIGINT,
             datetime DATETIME,
             time TIME,
-            user_name VARCHAR(50),                                                                                                                                       
-            user_id BIGINT,                                                                                                                          
-            x DECIMAL(10,6),
-            y DECIMAL(10,6),                                                                                                                        
-            raw_tweet TEXT,                                                                                                                                       
-            words TEXT,                                                                                                                                           
-            nouns TEXT,                                                                                                                                           
-            verbs TEXT,                                                                                                                                           
-            adjs TEXT,
+            user_name VARCHAR(50),
+            user_id BIGINT,
+            x DECIMAL(12,8),
+            y DECIMAL(12,8),
+            raw_tweet TEXT,
             lang VARCHAR(5)
         )
-        CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci                                                                                                                                               
-    ;                                                                                                                                                             
+        CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
+    ;
     """ %table_name
     execute_sql(sql, db_info, is_commit = True)
     return True
@@ -256,7 +228,7 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'                                                                                    
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
@@ -269,10 +241,7 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
         tweet_table_dict["x"],
         tweet_table_dict["y"],
         tweet_table_dict["raw_tweet"],
-        tweet_table_dict["words"],
-        tweet_table_dict["nouns"],
-        tweet_table_dict["verbs"],
-        tweet_table_dict["adjs"]
+        tweet_table_dict["lang"]
         )
     execute_sql(sql, db_info, is_commit = True)
     return True
@@ -281,21 +250,14 @@ def main():
     while True: 
         try:
             # From mysql_tools.py
-            # create_db(local_db)
-            # create_tweet_table(local_db)
+            create_db(local_db)
+            create_tweet_table(local_db)
 
             auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token_key, access_token_secret)
 
-            api = tweepy.API(auth)
-            api.update_status('tweepy + oauth!')
-            #
-            myStreamListener = listener()
-            myStream = tweepy.Stream(auth = api.auth, listener=myStreamListener())
-            myStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
-
-            # twitterStream = tweepy.Stream(auth, listener())
-            # twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
+            twitterStream = tweepy.Stream(auth, listener())
+            twitterStream.filter(locations=[122.933198,24.045416,153.986939,45.522785])
 
                                                                                                                                                      
         except Exception:
