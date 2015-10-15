@@ -2,30 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aaf2d497-448f-446d-b84b-56904d50522c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/Twitter_Analysis-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/Twitter_Analysis_MongoDB-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/combine_spatial_topic_table-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/convert_tweet_to_mallet-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/lda_analyze_twitter-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/lda_analyze_visualizer-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/lda_analyze_wordtopicassoc-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/lda_twitter-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Twitter_Analysis.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/analyze_tweet.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/combine_spatial_topic_table.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/comma_to_space.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/convert_gmt_to_jst.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/convert_tweet_to_mallet.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/convert_tweet_to_mallet.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/crowdtopic.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lda_analyze_sample.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lda_analyze_twitter.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lda_analyze_twitter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lda_analyze_visualizer.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lda_analyze_wordtopicassoc.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/run_general_text_stats.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" afterPath="$PROJECT_DIR$/src/TwitterCollector_3.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TwitterCollector_dev.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TwitterCollector_nepal.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TwitterCollector_3.py" afterPath="$PROJECT_DIR$/src/TwitterCollector_3.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TwitterCollector_Phangan.py" afterPath="$PROJECT_DIR$/src/TwitterCollector_Phangan.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GeoTweetCollector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,7 +28,7 @@
     <SUITE FILE_PATH="coverage/GeoTweetCollector$dA.coverage" NAME="dA Coverage Results" MODIFIED="1440150061968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DeepLearningTutorials/code" />
     <SUITE FILE_PATH="coverage/GeoTweetCollector$comma_to_space.coverage" NAME="comma_to_space Coverage Results" MODIFIED="1433750489770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev.coverage" NAME="TwitterCollector_dev Coverage Results" MODIFIED="1444895301078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev_3.coverage" NAME="TwitterCollector_dev_3 Coverage Results" MODIFIED="1444903712751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev_3.coverage" NAME="TwitterCollector_dev_3 Coverage Results" MODIFIED="1444904963112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -61,15 +42,23 @@
       <file leaf-file-name="TwitterCollector_3.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TwitterCollector_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-38.88889">
-              <caret line="70" column="78" selection-start-line="70" selection-start-column="78" selection-end-line="70" selection-end-column="78" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#327#352#0" expanded="true" />
-                <marker date="1444903860000" expanded="true" signature="5385:5442" placeholder="INSERT INTO ..." />
-                <marker date="1444903860000" expanded="true" signature="5747:5798" placeholder="SELECT `id`,..." />
-                <marker date="1444903860000" expanded="true" signature="7112:7527" placeholder="CREATE TABLE..IF..." />
-                <marker date="1444903860000" expanded="true" signature="7842:8388" placeholder="INSERT INTO ..." />
+                <element signature="e#126#151#0" expanded="true" />
+                <marker date="1444905023000" expanded="true" signature="5891:6306" placeholder="CREATE TABLE..IF..." />
+                <marker date="1444905023000" expanded="true" signature="6621:7167" placeholder="INSERT INTO ..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TwitterCollector.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TwitterCollector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.22727273">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,14 +83,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2920354">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.310345">
+              <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -158,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/lda_analyze_wordtopicassoc.ipynb" />
         <option value="/usr/local/lib/python3.4/site-packages/tweepy/streaming.py" />
         <option value="$PROJECT_DIR$/src/nepal_earthquake_tweet.py" />
-        <option value="$PROJECT_DIR$/src/TwitterCollector_Phangan.py" />
         <option value="$PROJECT_DIR$/src/Twitter_Analysis_MongoDB.ipynb" />
         <option value="$PROJECT_DIR$/src/Twitter_Analysis.ipynb" />
         <option value="$PROJECT_DIR$/src/convert_mongodb_tweet.py" />
@@ -171,6 +159,8 @@
         <option value="/&lt;Generic&gt; Fragment (TwitterCollector_dev_3.py:10083).sql" />
         <option value="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/TwitterCollector_Phangan.py" />
+        <option value="$PROJECT_DIR$/src/TwitterCollector_3.py" />
       </list>
     </option>
   </component>
@@ -880,7 +870,7 @@
       <workItem from="1443171058460" duration="1306000" />
       <workItem from="1443404390370" duration="27000" />
       <workItem from="1444893162219" duration="169000" />
-      <workItem from="1444893432460" duration="9158000" />
+      <workItem from="1444893432460" duration="10003000" />
     </task>
     <task id="LOCAL-00001" summary="Created combine_spatial_topic_table">
       <created>1439277602253</created>
@@ -928,7 +918,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82473000" />
+    <option name="totallyTimeSpent" value="83318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
@@ -949,7 +939,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18802084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3678862" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3678862" sideWeight="0.49305555" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1004,11 +994,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#327#352#0" expanded="true" />
-            <marker date="1444903860000" expanded="true" signature="5385:5442" placeholder="INSERT INTO ..." />
-            <marker date="1444903860000" expanded="true" signature="5747:5798" placeholder="SELECT `id`,..." />
-            <marker date="1444903860000" expanded="true" signature="7112:7527" placeholder="CREATE TABLE..IF..." />
-            <marker date="1444903860000" expanded="true" signature="7842:8388" placeholder="INSERT INTO ..." />
+            <element signature="e#126#151#0" expanded="true" />
+            <marker date="1444905023000" expanded="true" signature="5891:6306" placeholder="CREATE TABLE..IF..." />
+            <marker date="1444905023000" expanded="true" signature="6621:7167" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1048,20 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_Phangan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.961297">
-          <caret line="125" column="29" selection-start-line="125" selection-start-column="29" selection-end-line="125" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_nepal.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4508368">
-          <caret line="85" column="9" selection-start-line="85" selection-start-column="9" selection-end-line="85" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1094,18 +1068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_dev.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="44" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
-          <folding>
-            <element signature="e#355#392#0" expanded="true" />
-            <marker date="1444895297000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1444895297000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1114,38 +1076,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="32" />
-          <folding>
-            <marker date="1443166996000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1443166996000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_3.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-38.88889">
-          <caret line="70" column="78" selection-start-line="70" selection-start-column="78" selection-end-line="70" selection-end-column="78" />
-          <folding>
-            <element signature="e#327#352#0" expanded="true" />
-            <marker date="1444903860000" expanded="true" signature="5385:5442" placeholder="INSERT INTO ..." />
-            <marker date="1444903860000" expanded="true" signature="5747:5798" placeholder="SELECT `id`,..." />
-            <marker date="1444903860000" expanded="true" signature="7112:7527" placeholder="CREATE TABLE..IF..." />
-            <marker date="1444903860000" expanded="true" signature="7842:8388" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2920354">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="-9.310345">
+          <caret line="18" column="71" selection-start-line="18" selection-start-column="71" selection-end-line="18" selection-end-column="71" />
           <folding />
         </state>
       </provider>
@@ -1154,6 +1091,34 @@
       </provider>
       <provider editor-type-id="MultiMarkdownFxHtmlEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_Phangan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.479798">
+          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#126#151#0" expanded="true" />
+            <marker date="1444905023000" expanded="true" signature="5891:6306" placeholder="CREATE TABLE..IF..." />
+            <marker date="1444905023000" expanded="true" signature="6621:7167" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TwitterCollector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22727273">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
