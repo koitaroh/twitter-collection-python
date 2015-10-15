@@ -13,7 +13,6 @@ from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
 import time, datetime, json, sys, codecs, csv, calendar, MeCab, ConfigParser, traceback, os, MySQLdb
-from convert_gmt_to_jst import GMTToJST
 
 # Constants                                                                                                                                                     
 MECAB_MODE = 'mecabrc'
