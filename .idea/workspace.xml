@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aaf2d497-448f-446d-b84b-56904d50522c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TwitterCollector_dev.py" afterPath="$PROJECT_DIR$/src/TwitterCollector_dev.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" afterPath="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" />
     </list>
     <ignored path="GeoTweetCollector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +24,7 @@
     <SUITE FILE_PATH="coverage/GeoTweetCollector$dA.coverage" NAME="dA Coverage Results" MODIFIED="1440150061968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/DeepLearningTutorials/code" />
     <SUITE FILE_PATH="coverage/GeoTweetCollector$comma_to_space.coverage" NAME="comma_to_space Coverage Results" MODIFIED="1433750489770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev.coverage" NAME="TwitterCollector_dev Coverage Results" MODIFIED="1444895301078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev_3.coverage" NAME="TwitterCollector_dev_3 Coverage Results" MODIFIED="1444895370977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/GeoTweetCollector$TwitterCollector_dev_3.coverage" NAME="TwitterCollector_dev_3 Coverage Results" MODIFIED="1444898431851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -37,23 +35,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TwitterCollector_dev_3.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TwitterCollector_dev_3.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/TwitterCollector_dev_3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+            <state vertical-scroll-proportion="-2.6652315">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <marker date="1443167028000" expanded="true" signature="8419:10237" placeholder="CREATE TABLE..IF..." />
-                <marker date="1443167028000" expanded="true" signature="10852:11500" placeholder="INSERT INTO ..." />
+                <element signature="e#327#352#0" expanded="true" />
+                <marker date="1444899471000" expanded="true" signature="7773:9591" placeholder="CREATE TABLE..IF..." />
+                <marker date="1444899471000" expanded="true" signature="10206:10854" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".travis.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25104603">
+            <state vertical-scroll-proportion="0.0">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
@@ -144,11 +143,12 @@
         <option value="$PROJECT_DIR$/src/Twitter_Analysis.ipynb" />
         <option value="$PROJECT_DIR$/src/convert_mongodb_tweet.py" />
         <option value="$PROJECT_DIR$/src/TwitterCollector.py" />
-        <option value="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" />
         <option value="$PROJECT_DIR$/tests/test.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/TwitterCollector_dev.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="/usr/local/lib/python3.5/site-packages/tweepy/streaming.py" />
+        <option value="$PROJECT_DIR$/src/TwitterCollector_dev_3.py" />
       </list>
     </option>
   </component>
@@ -858,7 +858,7 @@
       <workItem from="1443171058460" duration="1306000" />
       <workItem from="1443404390370" duration="27000" />
       <workItem from="1444893162219" duration="169000" />
-      <workItem from="1444893432460" duration="1869000" />
+      <workItem from="1444893432460" duration="4661000" />
     </task>
     <task id="LOCAL-00001" summary="Created combine_spatial_topic_table">
       <created>1439277602253</created>
@@ -906,7 +906,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75184000" />
+    <option name="totallyTimeSpent" value="77976000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
@@ -982,8 +982,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1443167028000" expanded="true" signature="8419:10237" placeholder="CREATE TABLE..IF..." />
-            <marker date="1443167028000" expanded="true" signature="10852:11500" placeholder="INSERT INTO ..." />
+            <element signature="e#327#352#0" expanded="true" />
+            <marker date="1444899471000" expanded="true" signature="7773:9591" placeholder="CREATE TABLE..IF..." />
+            <marker date="1444899471000" expanded="true" signature="10206:10854" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -1315,6 +1316,14 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/TwitterCollector_dev.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1327,22 +1336,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_dev_3.py">
+    <entry file="file:///usr/local/lib/python3.5/site-packages/tweepy/streaming.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding>
-            <marker date="1443167028000" expanded="true" signature="8419:10237" placeholder="CREATE TABLE..IF..." />
-            <marker date="1443167028000" expanded="true" signature="10852:11500" placeholder="INSERT INTO ..." />
-          </folding>
+        <state vertical-scroll-proportion="0.6111111">
+          <caret line="172" column="89" selection-start-line="172" selection-start-column="89" selection-end-line="172" selection-end-column="89" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="file://$PROJECT_DIR$/src/TwitterCollector_dev_3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25104603">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-2.6652315">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#327#352#0" expanded="true" />
+            <marker date="1444899471000" expanded="true" signature="7773:9591" placeholder="CREATE TABLE..IF..." />
+            <marker date="1444899471000" expanded="true" signature="10206:10854" placeholder="INSERT INTO ..." />
+          </folding>
         </state>
       </provider>
     </entry>
