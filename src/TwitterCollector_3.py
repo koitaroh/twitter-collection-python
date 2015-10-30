@@ -129,9 +129,11 @@ def filter(text):
     # "URL"を削除
     if "http" in text:
         text = text.split("http", 1)[0]
-    text = text.replace('\n','') # Get rid of return
-    text = text.replace('\r','') # Get rid of return
-    text = text.replace("'",' ') # Get rid of return
+    text = text.replace('\n','')
+    text = text.replace('\r','')
+    text = text.replace("\'",' ')
+    text = text.replace("\"",' ') 
+    text = text.replace("\\",' ') 
     text = text.rstrip()
     return text
 
