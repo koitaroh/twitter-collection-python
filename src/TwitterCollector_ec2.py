@@ -20,18 +20,18 @@ print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 i = 0
 
 
-table_name = "tweet_table_" + d.strftime("%Y%m%d%H%M%S")
+table_name = "tweet_table_ec2_" + d.strftime("%Y%m%d%H%M%S")
 
-consumer_key = conf.get('twitter', 'consumer_key')
-consumer_secret = conf.get('twitter', 'consumer_secret')
-access_token_key = conf.get('twitter', 'access_token_key')
-access_token_secret = conf.get('twitter', 'access_token_secret')
+consumer_key = conf.get('twitter_dev', 'consumer_key')
+consumer_secret = conf.get('twitter_dev', 'consumer_secret')
+access_token_key = conf.get('twitter_dev', 'access_token_key')
+access_token_secret = conf.get('twitter_dev', 'access_token_secret')
 
 local_db = {
-            "host": conf.get('local_db', 'host'),
-            "user": conf.get('local_db', 'user'),
-            "passwd": conf.get('local_db', 'passwd'),
-            "db_name": conf.get('local_db', 'db_name'),
+            "host": conf.get('ec2', 'host'),
+            "user": conf.get('ec2', 'user'),
+            "passwd": conf.get('ec2', 'passwd'),
+            "db_name": conf.get('ec2', 'db_name'),
             }   
 
 
@@ -61,16 +61,14 @@ class listener(tweepy.StreamListener):
 
                 if "I'm at" not in raw_tweet:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
-                    timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
-                    print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
+                    # print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
                     i = i + 1
 
                     row = [
 
                         tweet['id'],
                         datetimeJST,
-                        timeJST,
                         tweet['user']['screen_name'],
                         tweet['user']['id_str'],
                         tweet['geo']['coordinates'][1],
@@ -82,7 +80,6 @@ class listener(tweepy.StreamListener):
                     tweet_table_dict = {
                         "tweet_id": tweet['id'],
                         "datetime": datetimeJST,
-                        "time": timeJST,
                         "user_name": tweet['user']['screen_name'],
                         "user_id": tweet['user']['id_str'],
                         "x": tweet['geo']['coordinates'][1],
@@ -179,7 +176,6 @@ def create_tweet_table(db_info):
             id BIGINT PRIMARY KEY AUTO_INCREMENT,
             tweet_id BIGINT,
             datetime DATETIME,
-            time TIME,
             user_name VARCHAR(50),
             user_id BIGINT,
             x DECIMAL(12,8),
@@ -198,14 +194,13 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
         table_name,
         tweet_table_dict["tweet_id"],
         tweet_table_dict["datetime"],
-        tweet_table_dict["time"],
         tweet_table_dict["user_name"],
         tweet_table_dict["user_id"],
         tweet_table_dict["x"],
