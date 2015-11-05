@@ -79,12 +79,12 @@ class listener(tweepy.StreamListener):
                         ]
                     tweet_table_dict = {
                         "tweet_id": tweet['id'],
-                        "datetime": datetimeJST,
+                        "tweeted_at": datetimeJST,
                         "user_name": tweet['user']['screen_name'],
                         "user_id": tweet['user']['id_str'],
                         "x": tweet['geo']['coordinates'][1],
                         "y": tweet['geo']['coordinates'][0],
-                        "raw_tweet": raw_tweet,
+                        "text": raw_tweet,
                         "lang": tweet['lang']
                         }
 
@@ -175,13 +175,14 @@ def create_tweet_table(db_info):
         %s(
             id BIGINT PRIMARY KEY AUTO_INCREMENT,
             tweet_id BIGINT,
-            datetime DATETIME,
+            tweeted_at DATETIME,
             user_name VARCHAR(50),
             user_id BIGINT,
             x DECIMAL(12,8),
             y DECIMAL(12,8),
-            raw_tweet TEXT,
-            lang VARCHAR(5)
+            text TEXT,
+            lang VARCHAR(5),
+            words VARCHAR(4)
         )
         CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
     ;
@@ -194,18 +195,18 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NULL
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
         table_name,
         tweet_table_dict["tweet_id"],
-        tweet_table_dict["datetime"],
+        tweet_table_dict["tweeted_at"],
         tweet_table_dict["user_name"],
         tweet_table_dict["user_id"],
         tweet_table_dict["x"],
         tweet_table_dict["y"],
-        tweet_table_dict["raw_tweet"],
+        tweet_table_dict["text"],
         tweet_table_dict["lang"]
         )
     execute_sql(sql, db_info, is_commit = True)
