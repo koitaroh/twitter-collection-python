@@ -185,8 +185,8 @@ def create_tweet_table(db_info):
             x DECIMAL(12,8),
             y DECIMAL(12,8),
             text TEXT,
-            lang VARCHAR(5),
-            words VARCHAR(4)
+            lang VARCHAR(4),
+            words TEXT
         )
         CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
     ;
