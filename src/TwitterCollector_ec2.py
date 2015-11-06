@@ -42,12 +42,6 @@ def YmdHMS(created_at):
     time_local = time.localtime(unix_time)
     return str(time.strftime("%Y-%m-%d %H:%M:%S", time_local))
 
-def HMS(created_at):
-    time_utc = time.strptime(created_at, '%a %b %d %H:%M:%S +0000 %Y')
-    unix_time = calendar.timegm(time_utc)
-    time_local = time.localtime(unix_time)
-    return str(time.strftime("%H:%M:%S", time_local))
-
 class listener(tweepy.StreamListener):
     def on_status(self, status):
         print(status.text)
@@ -59,7 +53,7 @@ class listener(tweepy.StreamListener):
             if tweet['geo']:
                 raw_tweet = tweet['text'] # convert from Unicode
 
-                if "I'm at" not in raw_tweet:
+                if "I'm at" not in raw_tweet and "きつねかわいい" not in raw_tweet:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
                     raw_tweet = filter(raw_tweet)
                     # print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')

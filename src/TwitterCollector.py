@@ -42,12 +42,6 @@ def YmdHMS(created_at):
     time_local = time.localtime(unix_time)
     return str(time.strftime("%Y-%m-%d %H:%M:%S", time_local))
 
-def HMS(created_at):
-    time_utc = time.strptime(created_at, '%a %b %d %H:%M:%S +0000 %Y')
-    unix_time = calendar.timegm(time_utc)
-    time_local = time.localtime(unix_time)
-    return str(time.strftime("%H:%M:%S", time_local))
-
 class listener(tweepy.StreamListener):
     def on_status(self, status):
         print(status.text)
@@ -59,9 +53,8 @@ class listener(tweepy.StreamListener):
             if tweet['geo']:
                 raw_tweet = tweet['text'] # convert from Unicode
 
-                if "I'm at" not in raw_tweet:
+                if "I'm at" not in raw_tweet and "きつねかわいい" not in raw_tweet:
                     datetimeJST = YmdHMS(tweet['created_at']) # convert datetime to local datetime.
-                    timeJST = HMS(tweet['created_at']) # convert time to local time.
                     raw_tweet = filter(raw_tweet)
                     print("%d" % i +' ' + datetimeJST +': '+ raw_tweet + '\r')
                     i = i + 1
@@ -70,7 +63,6 @@ class listener(tweepy.StreamListener):
 
                         tweet['id'],
                         datetimeJST,
-                        timeJST,
                         tweet['user']['screen_name'],
                         tweet['user']['id_str'],
                         tweet['geo']['coordinates'][1],
@@ -82,7 +74,6 @@ class listener(tweepy.StreamListener):
                     tweet_table_dict = {
                         "tweet_id": tweet['id'],
                         "tweeted_at": datetimeJST,
-                        "time": timeJST,
                         "user_name": tweet['user']['screen_name'],
                         "user_id": tweet['user']['id_str'],
                         "x": tweet['geo']['coordinates'][1],
@@ -179,7 +170,6 @@ def create_tweet_table(db_info):
             id BIGINT PRIMARY KEY AUTO_INCREMENT,
             tweet_id BIGINT,
             tweeted_at DATETIME,
-            time TIME,
             user_name VARCHAR(50),
             user_id BIGINT,
             x DECIMAL(12,8),
@@ -199,14 +189,13 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     INSERT INTO                                                                                                                                                   
         %s                                                                                                                                         
     VALUES(                                                                                                                                                       
-        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NULL
+        NULL, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', NULL
         )                                                                                                                                                         
     ;                                                                                                                         
     """ %(
         table_name,
         tweet_table_dict["tweet_id"],
         tweet_table_dict["tweeted_at"],
-        tweet_table_dict["time"],
         tweet_table_dict["user_name"],
         tweet_table_dict["user_id"],
         tweet_table_dict["x"],
