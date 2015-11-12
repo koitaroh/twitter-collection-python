@@ -16,9 +16,13 @@ Collect geotagged tweets using Twitter Streaming API.
 In streaming.py:
 
 line 161 to
+
 `self._buffer += self._stream.read(read_len).decode('UTF-8', 'ignore')`
+
 and line 171 to
+
 `self._buffer += self._stream.read(self._chunk_size).decode('UTF-8', 'ignore')`
+
 and then reinstalled via python3 setup.py install on my local copy of tweepy.
 
 ### Requirement:
@@ -27,6 +31,7 @@ As specified on line 18, make a configuration file "config.cfg" in parent direct
 It's a text file. in it, write your twitter API keys and MySQL
 connection file like below (replace * with your keys).
 
+```
 [twitter]
 consumer_key = ****
 consumer_secret = ****
@@ -38,3 +43,4 @@ host = ****
 user = ****
 passwd = ****
 db_name = ****
+```
