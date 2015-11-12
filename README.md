@@ -25,7 +25,12 @@ and line 171 to
 
 and then reinstalled via python3 setup.py install on my local copy of tweepy.
 
-### Requirement:
+### Requirements:
+* Python 3.4 or later
+* tweepy
+* MySQL
+* config.cfg
+
 You'll need a configuration file with twitter API authentication and MySQL connection information.
 As specified on line 18, make a configuration file "config.cfg" in parent directory.
 It's a text file. in it, write your twitter API keys and MySQL
