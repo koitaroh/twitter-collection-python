@@ -1,6 +1,2 @@
-.idea
+.idea/
 config.cfg
-data/*
-.idea/*
-
-.idea/workspace.xml
