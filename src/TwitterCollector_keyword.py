@@ -42,12 +42,12 @@ initialize()
 
 
 # 検索ワードを指定して100件のTweetデータをTwitter REST APIsから取得する
-def getTweetData(screen_name, max_id, since_id):
+def getTweetData(search_word, max_id, since_id):
     global twitter
-    url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
-    params = {'screen_name': screen_name,
-              'count':'200',
-              'include_rts': false,
+    url = 'https://api.twitter.com/1.1/search/tweets.json'
+    params = {'q': search_word,
+                # 'geocode': '9.747821,100.027039,10mi',
+              'count':'100',
     }
     # max_idの指定があれば設定する
     if max_id != -1:
@@ -89,7 +89,7 @@ while(True):
     try:
         count = count + 1
         sys.stdout.write("%d, "% count)
-        res = getTweetData(('train_yamanote') ,max_id=mid, since_id=sid)
+        res = getTweetData(('apple') ,max_id=mid, since_id=sid)
         if res['result']==False:
             # 失敗したら終了する
             print("status_code", res['status_code'])

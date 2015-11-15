@@ -4,7 +4,6 @@
 # Objective: Collect tweet and store into database
 
 from tweepy import Stream
-
 import time, datetime, json, sys, calendar, configparser, traceback, pymysql, importlib, tweepy
 
 # Constants                                                                                                                                                     
