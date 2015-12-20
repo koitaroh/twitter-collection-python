@@ -5,7 +5,6 @@
 from requests_oauthlib import OAuth1Session
 from requests.exceptions import ConnectionError, ReadTimeout, SSLError
 import json, datetime, time, pytz, re, sys, traceback, unicodedata, pymongo, ConfigParser
-#from pymongo import Connection     # Connection classは廃止されたのでMongoClientに変更 
 from pymongo import MongoClient
 import numpy as np
 from collections import defaultdict
@@ -15,7 +14,7 @@ import MeCab as mc
 conf = ConfigParser.SafeConfigParser()
 conf.read('../config.cfg')
  
-KEYS = { # 自分のアカウントで入手したキーを下記に記載
+KEYS = { 
         'consumer_key': conf.get('twitter_nepal', 'consumer_key'),
         'consumer_secret': conf.get('twitter_nepal', 'consumer_secret'),
         'access_token': conf.get('twitter_nepal', 'access_token_key'),
@@ -33,7 +32,6 @@ def initialize(): # twitter接続情報や、mongoDBへの接続処理等initial
     global twitter, twitter, connect, db, tweetdata, meta
     twitter = OAuth1Session(KEYS['consumer_key'],KEYS['consumer_secret'],
                             KEYS['access_token'],KEYS['access_secret'])
-#   connect = Connection('localhost', 27017)     # Connection classは廃止されたのでMongoClientに変更 
     connect = MongoClient('localhost', 27017)
     db = connect.starbucks
     tweetdata = db.tweetphangan11

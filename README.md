@@ -1,4 +1,4 @@
-# GeoTweetCollector
+# twitter-collection-python
 [![Build Status](https://travis-ci.org/koitaroh/GeoTweetCollector.svg?branch=master)](https://travis-ci.org/koitaroh/GeoTweetCollector)
 =========
 
