@@ -1,16 +1,17 @@
 # twitter-collection-python
-[![Build Status](https://travis-ci.org/koitaroh/GeoTweetCollector.svg?branch=master)](https://travis-ci.org/koitaroh/GeoTweetCollector)
+[![Build Status](https://travis-ci.org/koitaroh/twitter-collection-python.svg?branch=master)](https://travis-ci.org/koitaroh/twitter-collection-python)
 =========
 
-Collect geotagged tweets using Twitter Streaming API.
+Collect tweets using Twitter API.
 
 ### src
 
 | file name     | Description                    |
 | ------------- | ------------------------------ |
-| GeoTweetCollector.py | collect geotagged tweets |
-| GeoTweetCollector_ec2.py | for launching on EC2 |
-| GeoTweetCollector_Phangan.py | test app with MongoDB and SearchAPI |
+| dump_user_timeline.py | dump a user's timeline into csv |
+| TweetCollector.py | collect geo-tagged tweets |
+| TweetCollector_ec2.py | for launching on EC2 |
+
 
 ### important note:
 In streaming.py:
