@@ -1,5 +1,8 @@
 # Last Update: 2015-11-15
 # Python 3.5
+# Requirements
+# 1. Fill consumer_key, consumer_secret, access_key, and access_secret for Twitter API, or create config.cfg file with the keys (read README.md).
+# 2. Replace the twitter user name at line 69.
 
 import tweepy, csv, configparser, pytz
 
@@ -65,15 +68,3 @@ def get_all_tweets(screen_name):
 if __name__ == '__main__':
     #pass in the username of the account you want to download
     get_all_tweets("train_yamanote")
-    get_all_tweets("train_chuor")
-    get_all_tweets("train_sobuk")
-    get_all_tweets("train_sobur")
-    get_all_tweets("train_shosin")
-    get_all_tweets("train_saikyo")
-    get_all_tweets("train_tx")
-    get_all_tweets("train_109_tyk")
-    get_all_tweets("train_109_den")
-    get_all_tweets("train_odod")
-    get_all_tweets("train_ko")
-    get_all_tweets("train_koino")
-    get_all_tweets("keiodentetsu")
