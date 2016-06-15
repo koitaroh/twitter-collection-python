@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/koitaroh/twitter-collection-python.svg?branch=master)](https://travis-ci.org/koitaroh/twitter-collection-python)
 =========
 
-Collect tweets using Twitter API.
+Collect tweets using Twitter API and store in MySQL database.
 
 ### src
 
@@ -12,19 +12,6 @@ Collect tweets using Twitter API.
 | TweetCollector.py | collect geo-tagged tweets |
 | TweetCollector_ec2.py | for launching on EC2 |
 
-
-### important note:
-In streaming.py:
-
-line 161 to
-
-`self._buffer += self._stream.read(read_len).decode('UTF-8', 'ignore')`
-
-and line 171 to
-
-`self._buffer += self._stream.read(self._chunk_size).decode('UTF-8', 'ignore')`
-
-and then reinstalled via python3 setup.py install on my local copy of tweepy.
 
 ### Requirements:
 * Python 3.4 or later
@@ -50,3 +37,7 @@ user = ****
 passwd = ****
 db_name = ****
 ```
+
+### Workflow
+1. Prepare Python and MySQL environment.
+2. Run TweetCollector.py and keep it running.
