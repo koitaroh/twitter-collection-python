@@ -6,7 +6,6 @@ from requests_oauthlib import OAuth1Session
 from requests.exceptions import ConnectionError, ReadTimeout, SSLError
 import json, datetime, time, pytz, re, sys, traceback, unicodedata, pymongo, ConfigParser
 from pymongo import MongoClient
-import numpy as np
 from collections import defaultdict
 from bson.objectid import ObjectId
 import MeCab as mc
