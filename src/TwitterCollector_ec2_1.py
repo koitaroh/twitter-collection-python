@@ -20,18 +20,18 @@ print("initiated at:" + d.strftime("%Y-%m-%d %H:%M:%S"))
 i = 0
 
 
-table_name = "tweet_table_ec2_2_" + d.strftime("%Y%m%d%H%M%S")
+table_name = "tweet_table_ec2_1_" + d.strftime("%Y%m%d%H%M%S")
 
-consumer_key = conf.get('twitter_2', 'consumer_key')
-consumer_secret = conf.get('twitter_2', 'consumer_secret')
-access_token_key = conf.get('twitter_2', 'access_token_key')
-access_token_secret = conf.get('twitter_2', 'access_token_secret')
+consumer_key = conf.get('twitter_1', 'consumer_key')
+consumer_secret = conf.get('twitter_1', 'consumer_secret')
+access_token_key = conf.get('twitter_1', 'access_token_key')
+access_token_secret = conf.get('twitter_1', 'access_token_secret')
 
 local_db = {
-            "host": conf.get('ec2_2', 'host'),
-            "user": conf.get('ec2_2', 'user'),
-            "passwd": conf.get('ec2_2', 'passwd'),
-            "db_name": conf.get('ec2_2', 'db_name'),
+            "host": conf.get('ec2_1', 'host'),
+            "user": conf.get('ec2_1', 'user'),
+            "passwd": conf.get('ec2_1', 'passwd'),
+            "db_name": conf.get('ec2_1', 'db_name'),
             }   
 
 
