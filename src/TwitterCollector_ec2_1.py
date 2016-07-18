@@ -206,7 +206,7 @@ def insert_into_tweet_table(db_info, tweet_table_dict):
     execute_sql(sql, db_info, is_commit = True)
     return True
 
-def main():
+if __name__ == '__main__':
     while True: 
         try:
             # From mysql_tools.py
@@ -227,6 +227,3 @@ def main():
             # Try reconnection
             time.sleep(60)
             twitterStream = Stream(auth, listener())
-
-if __name__ == '__main__':
-    main()
