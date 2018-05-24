@@ -60,7 +60,7 @@ class MyStreamListener(tweepy.StreamListener):
 
                 if "I'm at" not in raw_tweet:
                     datetimeUTC = YmdHMS(tweet['created_at'])
-                    print("%d" % i +' ' + datetimeUTC +': '+ raw_tweet + '\r')
+                    # print("%d" % i +' ' + datetimeUTC +': '+ raw_tweet + '\r')
                     i = i + 1
 
                     row = [
