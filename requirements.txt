@@ -1,2 +1,4 @@
 tweepy
 pymysql
+sqlalchemy
+psycopg2

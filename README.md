@@ -10,11 +10,12 @@ Collect tweets using Twitter API and store in MySQL database.
 | ------------- | ------------------------------ |
 | dump_user_timeline.py | dump a user's timeline into csv |
 | TweetCollector.py | collect geo-tagged tweets |
-| TweetCollector_ec2.py | for launching on EC2 |
+| TweetCollector_ec2.py | for launching on EC2 ("_1" and "_2" are for deploying on two different instances)|
+| TweetCollector_keyword.py | collect geo-tagged tweets using keyword |
 
 
 ### Requirements:
-* Python 3.4 or later
+* Python 3
 * tweepy
 * MySQL
 * config.cfg
